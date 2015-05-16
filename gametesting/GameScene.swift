@@ -30,6 +30,7 @@ class GameScene: SKScene {
 
         
         addScene()
+        runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(updatePosOfCloud), SKAction.waitForDuration(0.05)])))
         
     }
     
@@ -78,9 +79,8 @@ class GameScene: SKScene {
             }
         }
     }
-   
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+    
+    func updatePosOfCloud() {
         
         if self.cloud01.position.x < self.cloud01.size.width * -1 {
             self.cloud01.position.x = self.frame.size.width + (self.cloud01.size.width / 2)
@@ -99,5 +99,11 @@ class GameScene: SKScene {
         } else {
             self.cloud03.position.x -= 0.4
         }
+    }
+   
+    override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
+        
+
     }
 }
